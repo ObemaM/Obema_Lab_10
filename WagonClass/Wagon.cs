@@ -7,7 +7,8 @@ namespace WagonClass
         public IdNumber ID { get; set; }
         public int number;
         public int maxSpeed;
-        protected int defaultMaxSpeed; // Поле для хранения начальной скорости
+        public
+            1int defaultMaxSpeed; // Поле для хранения начальной скорости
 
         public int Number
         {

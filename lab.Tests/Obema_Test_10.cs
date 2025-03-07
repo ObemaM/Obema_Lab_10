@@ -158,6 +158,46 @@ namespace Obema_Test_10
 
             Assert.IsTrue(wagon.CompareTo(null) > 0);
         }
+
+        [TestMethod]
+        public void UpgradeSpeedTest()
+        {
+            Wagon wagon = new Wagon(1, 100, 200);
+
+            wagon.UpgradeSpeed(50);
+
+            Assert.AreEqual(250, wagon.MaxSpeed);
+        }
+
+        [TestMethod]
+        public void UpgradeSpeedMaxTest()
+        {
+            Wagon wagon = new Wagon(2, 200, 250);
+
+            wagon.UpgradeSpeed(100);
+
+            Assert.AreEqual(300, wagon.MaxSpeed);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void UpgradeSpeedTestException()
+        {
+            Wagon wagon = new Wagon();
+
+            wagon.UpgradeSpeed(-10);
+        }
+
+        [TestMethod]
+        public void ResetToDefaultsTest()
+        {
+            Wagon wagon = new Wagon(3, 300, 150); 
+            wagon.UpgradeSpeed(50); 
+
+            wagon.ResetToDefaults();
+
+            Assert.AreEqual(150, wagon.MaxSpeed);
+        }
     }
 
     [TestClass]
