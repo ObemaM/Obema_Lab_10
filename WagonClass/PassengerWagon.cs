@@ -54,12 +54,9 @@ namespace WagonClass
             SittingSeats = sittingSeats;
         }
 
-        public override void Show()
+        public override string Show()
         {
-            Console.WriteLine("Пассажирский вагон:");
-            base.Show();
-            Console.WriteLine($"Количество койко-мест: {BedSeats}");
-            Console.WriteLine($"Количество сидячих мест: {SittingSeats}");
+            return $"Пассажирский вагон: {base.Show()} Количество койко-мест: {BedSeats}, Количество сидячих мест: {SittingSeats}";
         }
 
         public override void Init() // Переопределение метода Init()
@@ -79,11 +76,11 @@ namespace WagonClass
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine($"Ошибка: {ex.Message}");
+                        InputHelper.Text($"Ошибка: {ex.Message}");
                     }
                 }
                 else
-                    Console.WriteLine("Ошибка: Введите целое число."); // В случае ввода строки тоже
+                    InputHelper.Text("Ошибка: Введите целое число."); // В случае ввода строки тоже
             }
 
             bool validSitting = false;
@@ -99,11 +96,11 @@ namespace WagonClass
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine($"Ошибка: {ex.Message}");
+                        InputHelper.Text($"Ошибка: {ex.Message}");
                     }
                 }
                 else
-                    Console.WriteLine("Ошибка: Введите целое число.");
+                    InputHelper.Text("Ошибка: Введите целое число.");
             }
         }
 
@@ -115,13 +112,9 @@ namespace WagonClass
             SittingSeats = random.Next(0, 201);
         }
 
-        public void JustShow() // Для не виртуального
+        public string JustShow() // Для не виртуального
         {
-            Console.WriteLine("Пассажирский вагон:");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
-            Console.WriteLine($"Количество койко-мест: {BedSeats}");
-            Console.WriteLine($"Количество сидячих мест: {SittingSeats}");
+            return $"Пассажирский вагон: ID вагона: {ID}, Номер вагона: {Number}, Максимальная скорость: {MaxSpeed} км/ч, Количество койко-мест: {BedSeats}, Количество сидячих мест: {SittingSeats}";
         }
 
 

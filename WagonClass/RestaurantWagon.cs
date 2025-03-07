@@ -46,15 +46,9 @@ namespace WagonClass
             WorkMode = workMode;
         }
 
-        public override void Show() // Переопределение метода Show(), в котором выводим информацию о ресторане.
+        public override string Show() // Переопределение метода Show(), в котором выводим информацию о ресторане.
         {
-            Console.WriteLine("Вагон-ресторан:");
-            Console.WriteLine($"ID вагона: {ID}");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
-            Console.WriteLine($"Количество койко-мест: {BedSeats}");
-            Console.WriteLine($"Количество сидячих мест: {SittingSeats}");
-            Console.WriteLine($"Режим работы: {WorkMode}");
+            return $"Вагон-ресторан: ID вагона: {ID}, Номер вагона: {Number}, Максимальная скорость: {MaxSpeed} км/ч, Количество койко-мест: 0, Количество сидячих мест: {SittingSeats}, Режим работы: {WorkMode}";
         }
 
         public override void Init()
@@ -72,11 +66,11 @@ namespace WagonClass
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine($"Ошибка: {ex.Message}");
+                        InputHelper.Text($"Ошибка: {ex.Message}");
                     }
                 }
                 else
-                    Console.WriteLine("Ошибка: Введите целое число.");
+                    InputHelper.Text("Ошибка: Введите целое число.");
             }
 
             base.BedSeats = 0; // Чтобы ввода не было в консоли, сразу сбрасываем 
@@ -93,7 +87,7 @@ namespace WagonClass
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine("Ошибка ввода: " + ex.Message);
+                    InputHelper.Text("Ошибка ввода: " + ex.Message);
                 }
             }
         }
@@ -107,15 +101,9 @@ namespace WagonClass
             WorkMode = modes[random.Next(modes.Length)];
         }
 
-        public void JustShow()
+        public string JustShow()
         {
-            Console.WriteLine("Вагон-ресторан:");
-            Console.WriteLine($"ID вагона: {ID}");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
-            Console.WriteLine($"Количество койко-мест: {BedSeats}"); // При этом в выводе из PassengerWagon количество койко-мест будет 0
-            Console.WriteLine($"Количество сидячих мест: {SittingSeats}");
-            Console.WriteLine($"Режим работы: {WorkMode}");
+            return $"Вагон-ресторан: ID вагона: {ID}, Номер вагона: {Number}, Максимальная скорость: {MaxSpeed} км/ч, Количество койко-мест: 0, Количество сидячих мест: {SittingSeats}, Режим работы: {WorkMode}";
         }
 
         public override bool Equals(object obj)

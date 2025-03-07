@@ -2,11 +2,12 @@
 
 namespace WagonClass
 {
-    public class Wagon : IdNumber, IInit, IComparable<Wagon>, ICloneable
+    public class Wagon : IdNumber, IInit, IComparable<Wagon>, ICloneable, IUpgradable
     {
         public IdNumber ID { get; set; }
         public int number;
         public int maxSpeed;
+        protected int defaultMaxSpeed; // Поле для хранения начальной скорости
 
         public int Number
         {
@@ -43,6 +44,7 @@ namespace WagonClass
             ID = new IdNumber(0);
             Number = 1;
             MaxSpeed = 100;
+            defaultMaxSpeed = MaxSpeed; // Сохраняем начальное значение скорости
         }
 
         public Wagon(int id, int number, int maxSpeed)
@@ -50,13 +52,12 @@ namespace WagonClass
             ID = new IdNumber(id);
             Number = number;
             MaxSpeed = maxSpeed;
+            defaultMaxSpeed = MaxSpeed; // Сохраняем начальное значение скорости
         }
 
-        public virtual void Show()
+        public virtual string Show()
         {
-            Console.WriteLine($"ID вагона: {ID}");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
+            return $"Номер: {Number}, Максимальная скорость: {MaxSpeed}";
         }
 
         public virtual void Init()
@@ -131,13 +132,12 @@ namespace WagonClass
             ID.id = random.Next(1, 100);
             Number = random.Next(1, 1000);
             MaxSpeed = random.Next(1, 301);
+            defaultMaxSpeed = MaxSpeed; // Сохраняем начальное значение скорости
         }
 
-        public void JustShow()
+        public string JustShow()
         {
-            Console.WriteLine($"ID вагона: {ID}");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
+            return $"Номер: {Number}, Максимальная скорость: {MaxSpeed}";
         }
 
         public override bool Equals(object obj)
@@ -168,6 +168,25 @@ namespace WagonClass
         public override string ToString()
         {
             return $"Номер: {Number}, Максимальная скорость: {MaxSpeed}";
+        }
+
+        public void UpgradeSpeed(int additionalSpeed)
+        {
+            if (additionalSpeed <= 0)
+                throw new ArgumentException("Увеличение скорости должно быть положительным числом.");
+
+            if (MaxSpeed+additionalSpeed > 300)
+                MaxSpeed = 300; // Ограничиваем максимальную скорость
+            else
+                MaxSpeed += additionalSpeed;
+
+            Console.WriteLine($"Скорость вагона увеличена на {additionalSpeed} км/ч. Новая скорость: {MaxSpeed} км/ч.");
+        }
+
+        public void ResetToDefaults()
+        {
+            MaxSpeed = defaultMaxSpeed; // Возвращаем скорость к начальному значению
+            Console.WriteLine($"Параметры вагона сброшены к начальным. Максимальная скорость: {MaxSpeed} км/ч.");
         }
     }
 }

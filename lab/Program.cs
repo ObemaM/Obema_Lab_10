@@ -11,11 +11,11 @@ namespace Obema_Lab_10
             bool isNumber;
             do
             {
-                Console.Write(message);
+                InputHelper.OneText(message);
                 isNumber = int.TryParse(Console.ReadLine(), out number);
                 if (!isNumber || number < min || number > max)
                 {
-                    Console.WriteLine($"Некорректный ввод. Число должно быть от {min} до {max}");
+                    InputHelper.Text($"Некорректный ввод. Число должно быть от {min} до {max}");
                     isNumber = false;
                 }
 
@@ -78,7 +78,7 @@ namespace Obema_Lab_10
             int currentIndex = 0;
             Random random = new Random();
 
-            Console.WriteLine("Часть 1");
+            InputHelper.Text("Часть 1");
 
             for (int i = 0; i < wagons.Length - 1; i++)
             {
@@ -109,15 +109,15 @@ namespace Obema_Lab_10
 
             int choice;
 
-            Console.WriteLine("\nВведите 25-ый элемент массива c клавиатуры");
+            InputHelper.Text("\nВведите 25-ый элемент массива c клавиатуры");
             do
             {
-                Console.WriteLine("\nВыберите тип вагона для добавления:");
-                Console.WriteLine("1. Пассажирский вагон");
-                Console.WriteLine("2. Грузовой вагон");
-                Console.WriteLine("3. Вагон-ресторан");
+                InputHelper.Text("\nВыберите тип вагона для добавления:");
+                InputHelper.Text("1. Пассажирский вагон");
+                InputHelper.Text("2. Грузовой вагон");
+                InputHelper.Text("3. Вагон-ресторан");
 
-                Console.Write("Ваш выбор: ");
+                InputHelper.OneText("Ваш выбор: ");
                 choice = CheckInt("Выберите тип вагона для добавления: ", 1, 3);
 
                 Wagon newWagon = null;
@@ -134,7 +134,7 @@ namespace Obema_Lab_10
                         newWagon = new RestaurantWagon();
                         break;
                     default:
-                        Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                        InputHelper.Text("Некорректный ввод. Попробуйте еще раз.");
                         break;
                 }
 
@@ -147,29 +147,29 @@ namespace Obema_Lab_10
 
             } while (currentIndex <= 24);
 
-            Console.WriteLine("\nПросмотр вагонов с использованием виртуальной функции Show():");
+            InputHelper.Text("\nПросмотр вагонов с использованием виртуальной функции Show():");
             for (int i = 0; i < currentIndex; i++)
             {
-                Console.WriteLine($"\nВагон {i + 1}: ");
-                wagons[i].Show();
+                InputHelper.Text($"\nВагон {i + 1}: ");
+                InputHelper.Text(wagons[i].Show());
             }
 
-            Console.WriteLine("\nПросмотр вагонов с использованием не виртуальной функции JustShow():");
+            InputHelper.Text("\nПросмотр вагонов с использованием не виртуальной функции JustShow():");
             for (int i = 0; i < currentIndex; i++)
             {
-                Console.WriteLine($"\nВагон {i + 1}: ");
-                wagons[i].JustShow();
+                InputHelper.Text($"\nВагон {i + 1}: ");
+                InputHelper.Text(wagons[i].JustShow());
             }
 
-            Console.WriteLine("\nЧасть 2");
+            InputHelper.Text("\nЧасть 2");
 
-            Console.WriteLine($"\n26. Сумма койко-мест всех вагонов поезда : {SleepyPeople(wagons)}");
+            InputHelper.Text($"\n26. Сумма койко-мест всех вагонов поезда : {SleepyPeople(wagons)}");
 
-            Console.WriteLine($"\n28. Минимальная максимально допустимая скорость движения всех вагонов: {MinimalSpeed(wagons)}");
+            InputHelper.Text($"\n28. Минимальная максимально допустимая скорость движения всех вагонов: {MinimalSpeed(wagons)}");
 
-            Console.WriteLine($"\n29. Общий тоннаж грузовых вагонов поезда: {SummaryTonnage(wagons)}");
+            InputHelper.Text($"\n29. Общий тоннаж грузовых вагонов поезда: {SummaryTonnage(wagons)}");
 
-            Console.WriteLine("\nЧасть 3");
+            InputHelper.Text("\nЧасть 3");
 
             currentIndex = 0;
             IInit[] classes = new IInit[25];
@@ -204,16 +204,16 @@ namespace Obema_Lab_10
                 }
             }
 
-            Console.WriteLine("\nВведите 25-ый элемент массива c клавиатуры");
+            InputHelper.Text("\nВведите 25-ый элемент массива c клавиатуры");
             do
             {
-                Console.WriteLine("\nВыберите тип вагона для добавления:");
-                Console.WriteLine("1. Пассажирский вагон");
-                Console.WriteLine("2. Грузовой вагон");
-                Console.WriteLine("3. Вагон-ресторан");
-                Console.WriteLine("4. Дисциплина");
+                InputHelper.Text("\nВыберите тип вагона для добавления:");
+                InputHelper.Text("1. Пассажирский вагон");
+                InputHelper.Text("2. Грузовой вагон");
+                InputHelper.Text("3. Вагон-ресторан");
+                InputHelper.Text("4. Дисциплина");
 
-                Console.Write("Ваш выбор: ");
+                InputHelper.OneText("Ваш выбор: ");
 
                 choice = CheckInt("Выберите тип вагона для добавления: ", 1, 4);
 
@@ -234,7 +234,7 @@ namespace Obema_Lab_10
                         newElement = new Discipline();
                         break;
                     default:
-                        Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                        InputHelper.Text("Некорректный ввод. Попробуйте еще раз.");
                         break;
                 }
 
@@ -254,8 +254,8 @@ namespace Obema_Lab_10
 
             foreach (var wagon in classes)
             {
-                Console.WriteLine();
-                Console.WriteLine(wagon.ToString());
+                InputHelper.Text("");
+                InputHelper.Text(wagon.ToString());
                 if (wagon is RestaurantWagon)
                     restaurantCount++;
                 else if (wagon is PassengerWagon)
@@ -266,28 +266,28 @@ namespace Obema_Lab_10
                     disciplineCount++;
             }
 
-            Console.WriteLine("\n5. Количество объектов:");
-            Console.WriteLine($"Пассажирских вагонов: {passengerCount}");
-            Console.WriteLine($"Грузовых вагонов: {freightCount}");
-            Console.WriteLine($"Вагонов-ресторанов: {restaurantCount}");
-            Console.WriteLine($"Количество дисциплин: {disciplineCount}");
+            InputHelper.Text("\n5. Количество объектов:");
+            InputHelper.Text($"Пассажирских вагонов: {passengerCount}");
+            InputHelper.Text($"Грузовых вагонов: {freightCount}");
+            InputHelper.Text($"Вагонов-ресторанов: {restaurantCount}");
+            InputHelper.Text($"Количество дисциплин: {disciplineCount}");
 
-            Console.WriteLine("\nНажмите для продолжения...");
+            InputHelper.Text("\nНажмите для продолжения...");
             Console.ReadLine();
 
-            Console.WriteLine("\n6. Сортировка по номеру: ");
+            InputHelper.Text("\n6. Сортировка по номеру: ");
             Array.Sort(wagons); // Возрастание
 
             foreach (var wagon in wagons) // Беру массив первой части, ибо в Discipline нет полей для сравнения с классами Wagon, можно через IComparableEntity - но это не по заданию
             {
-                Console.WriteLine();
-                Console.WriteLine(wagon.ToString());
+                InputHelper.Text("");
+                InputHelper.Text(wagon.ToString());
             }
 
-            Console.WriteLine("\nНажмите для продолжения...");
+            InputHelper.Text("\nНажмите для продолжения...");
             Console.ReadLine();
 
-            Console.WriteLine("\n7. Бинарный поиск по имени");
+            InputHelper.Text("\n7. Бинарный поиск по имени");
             int searchNumber = CheckInt("Введите номер вагона для поиска: ", 1, 999);
 
             Wagon searchWagon = new Wagon { Number = searchNumber }; // Создаем объект Wagon для поиска
@@ -296,27 +296,27 @@ namespace Obema_Lab_10
 
             if (index >= 0)
             {
-                Console.WriteLine($"\nВагон с именем {searchNumber} найден под индексом {index}.\n");
-                wagons[index].Show();
+                InputHelper.Text($"\nВагон с именем {searchNumber} найден под индексом {index}.\n");
+                InputHelper.Text(wagons[index].Show());
             }
             else
             {
-                Console.WriteLine($"\nВагон с именем {searchNumber} не найден.");
+                InputHelper.Text($"\nВагон с именем {searchNumber} не найден.");
             }
 
-            Console.WriteLine("\nНажмите для продолжения...");
+            InputHelper.Text("\nНажмите для продолжения...");
             Console.ReadLine();
 
-            Console.WriteLine("\n8. Сортировка по максимальной скорости: "); // Возрастание
+            InputHelper.Text("\n8. Сортировка по максимальной скорости: "); // Возрастание
             Array.Sort(wagons, new Comparer());
 
             foreach (var wagon in wagons) // Беру массив первой части, ибо в Discipline нет полей для сравнения с классами Wagon, можно через IComparableEntity - но это не по заданию
             {
-                Console.WriteLine();
-                Console.WriteLine(wagon.ToString());
+                InputHelper.Text("");
+                InputHelper.Text(wagon.ToString());
             }
 
-            Console.WriteLine("\n9. Бинарный поиск по скорости");
+            InputHelper.Text("\n9. Бинарный поиск по скорости");
             int searchSpeed = CheckInt("Введите номер вагона для поиска: ", 1, 300);
 
             searchWagon = new Wagon { MaxSpeed = searchSpeed }; // Создаем объект Wagon для поиска
@@ -327,44 +327,64 @@ namespace Obema_Lab_10
 
             if (indexSpeed >= 0)
             {
-                Console.WriteLine($"\nВагон со скоростью {searchSpeed} найден под индексом {indexSpeed}.\n");
-                Console.WriteLine("Информация о вагоне:");
-                wagons[indexSpeed].Show();
+                InputHelper.Text($"\nВагон со скоростью {searchSpeed} найден под индексом {indexSpeed}.\n");
+                InputHelper.Text("Информация о вагоне:");
+                InputHelper.Text(wagons[indexSpeed].Show());
             }
             else
             {
-                Console.WriteLine($"\nВагон со скоростью {searchSpeed} не найден.");
+                InputHelper.Text($"\nВагон со скоростью {searchSpeed} не найден.");
             }
 
-            Console.WriteLine("\nНажмите для продолжения...");
+            InputHelper.Text("\nНажмите для продолжения...");
             Console.ReadLine();
 
             Wagon clon = (Wagon)wagons[0].Clone(); // Глубокое копирование
 
             Wagon copy = (Wagon)wagons[0].ShallowCopy(); // Поверхностное копирование 
 
-            Console.WriteLine("\nИсходный вагон:");
-            wagons[0].Show();
+            InputHelper.Text("\nИсходный вагон:");
+            InputHelper.Text(wagons[0].Show());
 
-            Console.WriteLine("\nКлон (Clone):");
-            clon.Show();
+            InputHelper.Text("\nКлон (Clone):");
+            InputHelper.Text(clon.Show());
 
-            Console.WriteLine("\nКопия (ShallowCopy):");
-            copy.Show();
+            InputHelper.Text("\nКопия (ShallowCopy):");
+            InputHelper.Text(copy.Show());
 
             wagons[0].ID.Id = 100;
             wagons[0].Number = 100;
             wagons[0].MaxSpeed = 100;
 
-            Console.WriteLine("\nПосле изменения исходного объекта Person:");
-            Console.WriteLine("\nИсходный вагон:");
-            wagons[0].Show();
+            InputHelper.Text("\nПосле изменения исходного объекта Person:");
+            InputHelper.Text("\nИсходный вагон:");
+            InputHelper.Text(wagons[0].Show());
 
-            Console.WriteLine("\nКлон (Clone):");
-            clon.Show(); // Должен остаться без изменений
+            InputHelper.Text("\nКлон (Clone):");
+            InputHelper.Text(clon.Show()); // Должен остаться без изменений
 
-            Console.WriteLine("\nКопия (ShallowCopy):");
-            copy.Show(); // Изменения видны, т.к. ссылается на тот же объект Wagon
+            InputHelper.Text("\nКопия (ShallowCopy):");
+            InputHelper.Text(copy.Show()); // Изменения видны, т.к. ссылается на тот же объект Wagon
+
+            InputHelper.Text("\nУлучшение характеристик вагонов:");
+            if (wagons[1] is IUpgradable upgradable)
+            {
+                InputHelper.Text($"\nТекущие параметры вагона {wagons[1].Number}:\n");
+                InputHelper.Text(wagons[1].Show());
+
+                int speedIncrease = CheckInt("Введите значение для увеличения скорости: ", 0, 300);
+
+                upgradable.UpgradeSpeed(speedIncrease);
+
+                InputHelper.Text("\nПараметры после улучшения:\n");
+                InputHelper.Text(wagons[1].Show());
+
+                InputHelper.Text("\nСброс к начальным параметрам...\n");
+                upgradable.ResetToDefaults();
+
+                InputHelper.Text("\nПараметры после сброса:\n");
+                InputHelper.Text(wagons[1].Show());
+            }
         }
     }
 }

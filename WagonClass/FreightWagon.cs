@@ -56,12 +56,9 @@ namespace WagonClass
             Tonnage = tonnage;
         }
 
-        public override void Show()
+        public override string Show()
         {
-            Console.WriteLine("Грузовой вагон:");
-            base.Show();
-            Console.WriteLine($"Назначение груза: {CargoType}");
-            Console.WriteLine($"Тоннаж: {Tonnage}");
+            return $"Грузовой вагон: {base.Show()}, Назначение груза: {CargoType}, Тоннаж: {Tonnage}";
         }
 
         public override void Init()
@@ -80,7 +77,7 @@ namespace WagonClass
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    InputHelper.Text($"Ошибка: {ex.Message}");
                 }
             }
 
@@ -97,11 +94,11 @@ namespace WagonClass
                     }
                     catch (ArgumentException ex)
                     {
-                        Console.WriteLine($"Ошибка: {ex.Message}");
+                        InputHelper.Text($"Ошибка: {ex.Message}");
                     }
                 }
                 else
-                    Console.WriteLine("Ошибка: Введите целое число.");
+                    InputHelper.Text("Ошибка: Введите целое число.");
             }
         }
 
@@ -114,13 +111,9 @@ namespace WagonClass
             Tonnage = random.Next(0, 1001);
         }
 
-        public void JustShow() // Для не виртуального вывода
+        public string JustShow() // Для не виртуального вывода
         {
-            Console.WriteLine("Грузовой вагон:");
-            Console.WriteLine($"Номер вагона: {Number}");
-            Console.WriteLine($"Максимальная скорость: {MaxSpeed} км/ч");
-            Console.WriteLine($"Назначение груза: {CargoType}");
-            Console.WriteLine($"Тоннаж: {Tonnage}");
+            return $"Грузовой вагон: ID вагона: {ID}, Номер вагона: {Number}, Максимальная скорость: {MaxSpeed} км/ч, Назначение груза: {CargoType}, Тоннаж: {Tonnage}";
         }
 
         public override bool Equals(object obj)

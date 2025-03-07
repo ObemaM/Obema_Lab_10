@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab", "lab\lab.csproj", "{1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab.Tests", "lab.Tests\lab.Tests.csproj", "{5ED77CF8-9B69-4059-A19A-3B36E1CACFD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WagonClass", "WagonClass\WagonClass.csproj", "{6C4D2B6D-D2D9-4289-ABF6-97288FEDA822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WagonClass", "WagonClass\WagonClass.csproj", "{6C4D2B6D-D2D9-4289-ABF6-97288FEDA822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
